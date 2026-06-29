@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impressum - Aureka Photos</title>
+    <style>
+        :root {
+            --font-main: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            --bg-card: #ffffff;
+            --text-dark: #0f172a;
+            --text-muted: #475569;
+            --accent-blue: #0369a1;
+            --border-light: rgba(15, 23, 42, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-main);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 40%, #e2fbf7 75%, #ffe4e6 100%);
+            background-attachment: fixed;
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding: 4rem 2rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--bg-card);
+            padding: 3rem;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+            border: 1px solid var(--border-light);
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--text-dark);
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+        
+        .back-link:hover {
+            color: var(--accent-blue);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="index.html" class="back-link">← Zurück zur Startseite</a>
+        
+        <h1>Impressum</h1>
+
+        <p><strong>Aureka Systems e.U.</strong></p>
+        <p>IT-Dienstleistungen</p>
+
+        <h2>Firmensitz</h2>
+        <p>
+            Billrothstraße 10/3<br>
+            4540 Bad Hall<br>
+            Österreich
+        </p>
+
+        <h2>Kontakt</h2>
+        <p>
+            E-Mail: <a href="#" id="contact-link" style="color: var(--accent-blue); text-decoration: none; font-weight: 500;">Adresse wird geladen...</a><br>
+            Website: <a href="https://aureka.photos">aureka.photos</a>
+        </p>
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                // Die Adresse in harmlose Einzelteile zerlegen
+                var user = "hello";
+                var domain = "aureka";
+                var ext = "photos";
+                
+                // Adresse zusammensetzen
+                var mail = user + "@" + domain + "." + ext;
+                
+                // Den Platzhalter im HTML finden und überschreiben
+                var linkEl = document.getElementById("contact-link");
+                if(linkEl) {
+                    linkEl.href = "mailto:" + mail;
+                    linkEl.textContent = mail;
+                }
+            });
+        </script>
+
+        <h2>Unternehmensdaten</h2>
+        <p>
+            <strong>Rechtsform:</strong> Eingetragener Unternehmer (e.U.)<br>
+            <strong>Firmenbuchnummer:</strong> FN 681331 h<br>
+            <strong>Firmenbuchgericht:</strong> Landesgericht Steyr<br>
+            <strong>UID-Nummer:</strong> -<br>
+            <strong>Mitgliedschaften bei der Wirtschaftskammerorganisation:</strong> WKO Oberösterreich, Fachgruppe UBIT
+        </p>
+
+        <h2>Anwendbare Rechtsvorschriften</h2>
+        <p>Gewerbeordnung: <a href="https://www.ris.bka.gv.at" target="_blank">www.ris.bka.gv.at</a></p>
+        <p>Aufsichtsbehörde/Gewerbebehörde: Bezirkshauptmannschaft Steyr-Land</p>
+
+        <h2>EU-Streitschlichtung</h2>
+        <p>Gemäß Verordnung über Online-Streitbeilegung in Verbraucherangelegenheiten (ODR-Verordnung) möchten wir Sie über die Online-Streitbeilegungsplattform (OS-Plattform) informieren. Verbraucher haben die Möglichkeit, Beschwerden an die Online Streitbeilegungsplattform der Europäischen Kommission unter <a href="https://consumer-redress.ec.europa.eu" target="_blank">https://consumer-redress.ec.europa.eu</a> zu richten.</p>
+    </div>
+
+</body>
+</html>

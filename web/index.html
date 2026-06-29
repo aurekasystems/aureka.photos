@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="canonical" href="https://aureka.photos/" />
+
+    <title>Aureka Photos - Deine souveräne Cloud</title>
+    <style>
+        :root {
+            /* Web-Safe Clean Font Stack (Keine externen Google Fonts!) */
+            --font-main: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            
+            /* Einladende Farbpalette: Dunkelblau über Helltürkis bis Pastell-Rosa */
+            --bg-card: #ffffff;
+            --text-dark: #0f172a;       
+            --text-muted: #475569;      
+            
+            --accent-blue: #0369a1;     
+            --accent-teal: #0d9488;     
+            --accent-rose: #fda4af;     
+            
+            --badge-soon: #fecdd3;      
+            --badge-soon-text: #9f1239;
+            --badge-early: #ccfbf1;     
+            --badge-early-text: #115e59;
+            
+            --border-light: rgba(15, 23, 42, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-main);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            /* Dreistufiger linearer Farbverlauf für das kSuite-Feeling */
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 40%, #e2fbf7 75%, #ffe4e6 100%);
+            background-attachment: fixed;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        header {
+            text-align: center;
+            padding: 5rem 2rem 3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            letter-spacing: -0.03em;
+            color: var(--text-dark);
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.25rem;
+            margin-bottom: 3rem;
+        }
+
+        /* USP Badges */
+        .usp-banner {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .usp-item {
+            background: var(--bg-card);
+            color: var(--text-dark);
+            padding: 0.5rem 1.2rem;
+            border-radius: 9999px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
+        }
+
+        /* Vertical Pricing Rows */
+        .pricing-container {
+            max-width: 900px;
+            margin: 0 auto 5rem;
+            padding: 0 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .pricing-row {
+            display: flex;
+            background-color: var(--bg-card);
+            border-radius: 24px;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .pricing-row:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+        }
+
+        .pricing-row.popular {
+            border: 2px solid var(--accent-rose);
+        }
+
+        .pricing-left {
+            flex: 0 0 35%;
+            padding: 3rem 2.5rem;
+            background-color: rgba(248, 250, 252, 0.5);
+            border-right: 1px solid var(--border-light);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .pricing-right {
+            flex: 1;
+            padding: 3rem 2.5rem;
+        }
+
+        /* Badges */
+        .badge-container {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .badge-soon { background-color: var(--badge-soon); color: var(--badge-soon-text); }
+        .badge-popular { background-color: var(--accent-blue); color: white; }
+        .badge-early { background-color: var(--badge-early); color: var(--badge-early-text); }
+
+        .tier-name {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .tier-price {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .tier-price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+
+        .tier-storage {
+            font-weight: 600;
+            color: var(--accent-teal);
+            font-size: 1.1rem;
+        }
+
+        /* Features List */
+        .features {
+            list-style: none;
+            display: grid;
+            gap: 1.2rem;
+        }
+
+        .features li {
+            display: flex;
+            align-items: flex-start;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+        }
+
+        .feature-icon {
+            color: var(--accent-teal);
+            margin-right: 1rem;
+            font-size: 1.2rem;
+            line-height: 1.2;
+        }
+
+        .feature-text strong {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.1rem;
+        }
+
+        .feature-text span {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Alpine Add-on Special Block */
+        .alpine-addon {
+            background: var(--bg-card);
+            border: 2px dashed var(--accent-rose);
+            border-radius: 24px;
+            padding: 3rem;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 4rem;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.02);
+        }
+
+        .alpine-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .alpine-price {
+            display: inline-block;
+            background-color: var(--badge-soon);
+            color: var(--badge-soon-text);
+            padding: 0.4rem 1.2rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            margin: 1rem 0 2rem;
+            font-size: 0.95rem;
+        }
+
+        .alpine-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            text-align: left;
+        }
+
+        .alpine-item {
+            background: rgba(248, 250, 252, 0.6);
+            padding: 1.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-light);
+        }
+
+        .alpine-item strong {
+            display: block;
+            color: var(--text-dark);
+            margin-bottom: 0.3rem;
+            font-weight: 600;
+        }
+
+        .alpine-item span {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        footer a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: 500;
+        }
+
+        footer a:hover {
+            color: var(--accent-blue);
+        }
+
+        @media (max-width: 768px) {
+            .pricing-row {
+                flex-direction: column;
+            }
+            .pricing-left {
+                border-right: none;
+                border-bottom: 1px solid var(--border-light);
+                padding: 2rem;
+            }
+            .pricing-right {
+                padding: 2rem;
+            }
+            h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Aureka Photos</h1>
+        <p class="subtitle">Deine private Fotocloud. Keine Werbung, absolute Datensouveränität.</p>
+        
+        <div class="usp-banner">
+            <div class="usp-item">🇪🇺 Strikt europäisches Hosting</div>
+            <div class="usp-item">🔒 100% DSGVO Konform</div>
+            <div class="usp-item">🛑 Keine KI-Profilierung für Werbezwecke</div>
+        </div>
+    </header>
+
+    <div class="pricing-container">
+        
+        <div class="pricing-row">
+            <div class="pricing-left">
+                <div class="badge-container">
+                    <span class="badge badge-soon">Coming Soon</span>
+                </div>
+                <div class="tier-name">One</div>
+                <div class="tier-price">€ 3.99<span> / mo</span></div>
+                <div class="tier-storage">100 GB Speicherplatz</div>
+            </div>
+            <div class="pricing-right">
+                <ul class="features">
+                    <li>
+                        <div class="feature-icon">✦</div>
+                        <div class="feature-text">
+                            <strong>Zufällige Hash-Domain</strong>
+                            <span>Deine Privatsphäre beginnt bei der Adresse. Ein zufälliger Code (z.B. <code>u7x9.on.aureka.photos</code>) schützt Deine Identität von Anfang an.</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="feature-icon">✦</div>
+                        <div class="feature-text"><strong>1 Admin-User</strong><span>Voller, isolierter Zugriff auf dein persönliches Dashboard.</span></div>
+                    </li>
+                    <li>
+                        <div class="feature-icon">✦</div>
+                        <div class="feature-text"><strong>Gast-Links für Uploads</strong><span>Lass Freunde Fotos direkt in deine Cloud hochladen, ohne dass sie einen Account benötigen.</span></div>
+                    </li>
+                    <li>
+                        <div class="feature-icon">✦</div>
+                        <div class="feature-text"><strong>Standard Machine-Learning</strong><span>Die datenschutzkonforme Gesichtserkennung läuft ressourcenschonend asynchron über Nacht.</span></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="pricing-row popular">
+            <div class="pricing-left">
+                <div class="badge-container">
+                    <span class="badge badge-popular">Most Popular</span>
+                    <span class="badge badge-soon">Coming Soon</span>
+                </div>
+                <div class="tier-name">Family</div>
+                <div class="tier-price">€ 12.99<span> / mo</span></div>
+                <div class="tier-storage">1 TB Speicherplatz</div>
+            </div>
+            <div class="pricing-right">
+                <ul class="features">
+                    <li>
+                        <div class="feature-icon">✦</div>
+                        <div class="feature-text">
+                            <strong>Eigene Subdomain</strong>
+                            <span>Wiedererkennbar und einfach zu teilen (z.B. <code>dein-name.on.aureka.photos</code>).</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="feature-icon">✦</div>
+                        <div class="feature-text">
+                            <strong>Bis zu 5 isolierte User</strong>
+                            <span>Der perfekte Familienverteiler. Jeder Nutzer hat sein eigenes, privates Album.</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="feature-icon">✦</div>
+                        <div class="feature-text"><strong>Priority Machine-Learning</strong><span>Intelligente Objekt- und Gesichtserkennung wird sofort beim Upload live verarbeitet.</span></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="pricing-row">
+            <div class="pricing-left">
+                <div class="badge-container">
+                    <span class="badge badge-soon">Coming Soon</span>
+                </div>
+                <div class="tier-name">Studio</div>
+                <div class="tier-price">€ 24.99<span> / mo</span></div>
+                <div class="tier-storage">2 TB Speicherplatz</div>
+            </div>
+            <div class="pricing-right">
+                <ul class="features">
+                    <li>
+                        <div class="feature-icon">✦</div>
+                        <div class="feature-text"><strong>Eigene Domain (BYOD)</strong><span>Bring deine eigene Wunschdomain mit (Bring Your Own Domain). Auf Wunsch als White-Glove-Service eingerichtet.</span></div>
+                    </li>
+                    <li>
+                        <div class="feature-icon">✦</div>
+                        <div class="feature-text"><strong>Bis zu 20 User</strong><span>Ausgelegt für Teams, Fotostudios, Vereine oder sehr große Familienprojekte.</span></div>
+                    </li>
+                    <li>
+                        <div class="feature-icon">✦</div>
+                        <div class="feature-text"><strong>4K-Video-Streaming & White-Label</strong><span>Voller Support für hochauflösendes Streaming. Aureka-Branding lässt sich dezent ausblenden.</span></div>
+                    </li>
+                    <li>
+                        <div class="feature-icon">✦</div>
+                        <div class="feature-text"><strong>Premium Support</strong><span>Garantierte Ticket-Erstantwort innerhalb von 48 Geschäftsstunden durch das Kern-Team.</span></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="pricing-row">
+            <div class="pricing-left">
+                <div class="badge-container">
+                    <span class="badge badge-popular">Invitation only</span>
+                    <span class="badge badge-early">Early Access</span>
+                </div>
+                <div class="tier-name">Ultimate unlimited</div>
+                <div class="tier-price">€ 0.00<span> / mo</span></div>
+                <div class="tier-storage">Unlimitierter Speicherplatz*</div>
+            </div>
+            <div class="pricing-right">
+                <ul class="features">
+                    <li>
+                        <div class="feature-icon">✦</div>
+                        <div class="feature-text">
+                            <strong>Exklusiver Testzugang</strong>
+                            <span>Nur für geladene Mitglieder der frühen Entwicklungsphase. Alle Features des Cluster-Tarifs sind vollständig inkludiert.</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="feature-icon">✦</div>
+                        <div class="feature-text">
+                            <strong>*Fair Use Policy (FUP)</strong>
+                            <span>Zur Sicherstellung der allgemeinen Stabilität vorerst auf 5 TB begrenzt, danach sanfte Drosselung gemäß den Test-Richtlinien.</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="alpine-addon">
+        <h3 class="tier-name">Add-On: Alpine 🏔️</h3>
+        <p style="color: var(--text-muted); font-size: 1.05rem;">Das optionale Swiss-Upgrade für kompromisslose Sicherheit und rechtliche Absicherung.</p>
+        <div class="alpine-price">+ € 4.99 / Monat zu jedem Tarif</div>
+        
+        <div class="alpine-grid">
+            <div class="alpine-item">
+                <strong>🇨🇭 Schweiz-Garantie</strong>
+                <span>Physische Datenhaltung und Verarbeitung im klimaneutralen Bunker bei Infomaniak in Genf.</span>
+            </div>
+            <div class="alpine-item">
+                <strong>📄 Privacy-Reporting</strong>
+                <span>Jährliches offizielles Data Residency Certificate als PDF für deine DSGVO-Dokumentation.</span>
+            </div>
+            <div class="alpine-item">
+                <strong>🔒 Encryption at Rest</strong>
+                <span>Dediziert verschlüsselter Speicher im Ruhezustand für maximalen Schutz der Rohdaten.</span>
+            </div>
+            <div class="alpine-item">
+                <strong>🛡️ Backup-Zertifikat</strong>
+                <span>Wöchentlicher automatisierter Integritäts- und Statusreport über deine Backups per E-Mail.</span>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p style="margin-bottom: 1rem;"><a href="https://aureka.at">&copy; 2026 Aureka Systems e.U.</a> – Built with precision ❤ in Austria</p>
+        <p>
+            <a href="impressum.html">Impressum</a>
+            <a href="#">Datenschutz</a>
+            <a href="#">AGB</a>
+        </p>
+    </footer>
+
+</body>
+</html>
