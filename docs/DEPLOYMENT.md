@@ -2,7 +2,7 @@
 
 For now `aureka.photos` is not a website of its own: the shared Blossom proxy
 (`aureka-proxy-caddy`) answers both names with a **temporary redirect (302)**
-to `https://aureka.at/`. There is no container and no checkout on the server;
+to `https://aureka.at/products/photos`. There is no container and no checkout on the server;
 the landing page in `web/` stays in the repository for later.
 
 Why 302 and not 301: browsers cache a 301 indefinitely. Anyone who visits
@@ -16,7 +16,7 @@ kept here and not in the infrastructure repository.
 ## Files
 
 - `deploy/blossom/aureka-photos.caddy`: route for the shared proxy;
-  `aureka.photos` and `www.aureka.photos` → `https://aureka.at/` (302).
+  `aureka.photos` and `www.aureka.photos` → `https://aureka.at/products/photos` (302).
 
 ## 1. Route in the shared proxy (as `mjs`)
 
@@ -70,7 +70,7 @@ curl -I https://aureka.photos/
 curl -I https://www.aureka.photos/
 ```
 
-Expected: `HTTP/2 302` with `location: https://aureka.at/`.
+Expected: `HTTP/2 302` with `location: https://aureka.at/products/photos`.
 
 ## Rollback / launching the real site
 

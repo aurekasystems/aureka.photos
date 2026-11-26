@@ -1,9 +1,9 @@
 # Shared Blossom proxy route for aureka.photos.
 # Installed as /srv/proxy/caddy/data/config/sites-enabled/aureka-photos.caddy
 #
-# Temporary: until the plans are ready, aureka.photos redirects to aureka.at.
+# Temporary: until the plans are ready, aureka.photos redirects to its product page on aureka.at.
 # Deliberately 302 (temporary), not 301: browsers cache a 301 indefinitely,
 # so visitors would keep being sent to aureka.at after the real site launches.
 aureka.photos, www.aureka.photos {
-	redir https://aureka.at/ temporary
+	redir https://aureka.at/products/photos temporary
 }
